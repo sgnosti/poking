@@ -16,8 +16,8 @@ import com.tinkerforge.TimeoutException;
  */
 public class PokingApplication {
 
-	private static final String SOUND_UID = "2do";
-	private static final String HUMIDITY_UID = "2do";
+	private static final String SOUND_UID = "mkZ";
+	private static final String HUMIDITY_UID = "keJ";
 	private static String HOST = "localhost";
 	private static int PORT = 4223;
 
