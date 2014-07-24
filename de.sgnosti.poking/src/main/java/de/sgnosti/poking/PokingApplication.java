@@ -1,6 +1,7 @@
 package de.sgnosti.poking;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import com.tinkerforge.AlreadyConnectedException;
 import com.tinkerforge.BrickletHumidity;
@@ -31,7 +32,7 @@ public class PokingApplication {
 			ipcon.connect(HOST, PORT);
 
 			// trigger an event when measured intensity is over the threshold
-			soundBricklet.setIntensityCallbackThreshold('>', 0, 120);
+			soundBricklet.setIntensityCallbackThreshold('>', 1200, 1200);
 
 			soundBricklet.addIntensityReachedListener(new IntensityReachedListener() {
 
@@ -49,15 +50,15 @@ public class PokingApplication {
 			soundBricklet.addIntensityListener((final int intensity) -> System.out.println("Current sound instensity: " + intensity));
 
 			// configure humidity sensor
-			humidityBricklet.setHumidityCallbackThreshold('>', (short) 0, (short) 70);
-			humidityBricklet.addHumidityReachedListener((final int humidity) -> System.out.println("Humidity reached " + humidity + "%"));
+			humidityBricklet.setHumidityCallbackThreshold('>', (short) 60, (short) 60);
+			humidityBricklet.addHumidityReachedListener((final int humidity) -> System.out.println("Humidity reached " + humidity / 10.0 + "%"));
 
 			humidityBricklet.setHumidityCallbackPeriod(10000);
-			humidityBricklet.addHumidityListener((final int humidity) -> System.out.println("Current humidity " + humidity + "%"));
+			humidityBricklet.addHumidityListener((final int humidity) -> System.out.println("Current humidity " + humidity / 10.0 + "%"));
 
-			Thread.sleep(60000);
+			new InputStreamReader(System.in).read();
 
-		} catch (AlreadyConnectedException | IOException | TimeoutException | NotConnectedException | InterruptedException e) {
+		} catch (AlreadyConnectedException | IOException | TimeoutException | NotConnectedException e) {
 			e.printStackTrace();
 		} finally {
 			try {
