@@ -1,21 +1,13 @@
-package de.sgnosti.poking.monitor;
+package de.sgnosti.poking.bricklet;
+
+import java.beans.PropertyChangeListener;
 
 /**
  * TODO doc
  * @author SGN
  *
  */
-public interface BrickletMonitor {
-
-	/**
-	 * Start monitoring
-	 */
-	public void start();
-	
-	/**
-	 * Stop monitoring
-	 */
-	public void stop();
+public interface Bricklet {
 	
 	/**
 	 * 
@@ -40,5 +32,17 @@ public interface BrickletMonitor {
 	 * @param threshold
 	 */
 	public void setThreshold(int threshold);
+	
+	/**
+	 * 
+	 * @param listener
+	 */
+	public void addPropertyChangeListener (PropertyChangeListener listener);
+	
+	/**
+	 * 
+	 * @param listener
+	 */
+	public void removePropertyChangeListener (PropertyChangeListener listener);
 	
 }

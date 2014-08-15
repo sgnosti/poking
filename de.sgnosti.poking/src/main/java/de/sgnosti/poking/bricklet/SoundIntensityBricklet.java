@@ -1,29 +1,22 @@
-package de.sgnosti.poking.monitor;
+package de.sgnosti.poking.bricklet;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import com.tinkerforge.BrickletSoundIntensity;
 import com.tinkerforge.IPConnection;
 
 import de.sgnosti.poking.util.ExceptionWrapper;
 
-public class SoundIntensityMonitor implements BrickletMonitor {
+public class SoundIntensityBricklet implements Bricklet {
 
-	private final String uid;
-	private final IPConnection ipcon;
 	private final BrickletSoundIntensity bricklet;
 	
-	private int threshold;
-	private int period;
+	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
 	
-	public SoundIntensityMonitor(String uid, IPConnection ipcon) {
-		this.uid = uid;
-		this.ipcon = ipcon;
+	public SoundIntensityBricklet(String uid, IPConnection ipcon) {
 		this.bricklet = new BrickletSoundIntensity(uid, ipcon);
-	}
-	
-	public void start() {
-	}
-	
-	public void stop() {
 	}
 
 	@Override
@@ -37,7 +30,7 @@ public class SoundIntensityMonitor implements BrickletMonitor {
 	}
 
 	@Override
-	public void setPeriod(int period) {
+	public void setPeriod(long period) {
 		ExceptionWrapper.wrap(() -> bricklet.setIntensityCallbackPeriod(period));
 	}
 
@@ -45,4 +38,15 @@ public class SoundIntensityMonitor implements BrickletMonitor {
 	public void setThreshold(int threshold) {
 		ExceptionWrapper.wrap(() -> bricklet.setIntensityCallbackThreshold('>', threshold, threshold));
 	}
+
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		propertyChangeSupport.addPropertyChangeListener(listener);
+	}
+
+	@Override
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		propertyChangeSupport.addPropertyChangeListener(listener);		
+	}
+	
 }
