@@ -5,7 +5,6 @@ import java.util.concurrent.Callable;
 public class ExceptionWrapper {
 
 	/**
-	 * TODO wrap exceptions, is this how you do it?
 	 * Catch exceptions to throw runtime errors instead
 	 * @param callable what to run
 	 * @return the return value of the callable
@@ -19,12 +18,20 @@ public class ExceptionWrapper {
 		}
 	}
 	
-	public static void wrap(Runnable runnable) {
+	/**
+	 * Catch exceptions to throw runtime errors instead
+	 * @param block what to run (no result expected)
+	 */
+	public static void wrap(Block block) {
 		try {
-			runnable.run();
+			block.accept();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
+	@FunctionalInterface
+	public interface Block {
+		public void accept() throws Exception;
+	}
 }
