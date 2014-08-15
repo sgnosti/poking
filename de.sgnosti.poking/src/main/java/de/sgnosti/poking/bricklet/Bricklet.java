@@ -10,6 +10,9 @@ import java.beans.PropertyChangeListener;
  */
 public interface Bricklet {
 
+	public static String PERIODICAL_EVENT = "periodical";
+	public static String THRESHOLD_REACHED = "thresholdReached";
+
 	/**
 	 * 
 	 * @return period
