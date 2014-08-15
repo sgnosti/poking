@@ -5,14 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ExceptionWrapperTest {
-	
-	@Test(expected=RuntimeException.class)
+
+	@Test(expected = RuntimeException.class)
 	public void testExceptionNotThrown() {
-		ExceptionWrapper.wrap(() -> {			
-			throw new Exception ();
+		ExceptionWrapper.wrap(() -> {
+			throw new Exception();
 		});
 	}
-	
+
 	@Test
 	public void testReturnValue() throws Exception {
 		int result = ExceptionWrapper.wrap(() -> {
@@ -20,15 +20,15 @@ public class ExceptionWrapperTest {
 		});
 		assertEquals(3, result);
 	}
-	
+
 	@Test
 	public void testVoid() throws Exception {
 		ExceptionWrapper.wrap(() -> {
 			doNothing();
 		});
 	}
-	
-	@Test(expected=RuntimeException.class)
+
+	@Test(expected = RuntimeException.class)
 	public void testVoidThrowingException() throws Exception {
 		ExceptionWrapper.wrap(() -> {
 			throwException();
@@ -36,9 +36,9 @@ public class ExceptionWrapperTest {
 	}
 
 	public void doNothing() {
-		
+
 	}
-	
+
 	public void throwException() throws Exception {
 		throw new Exception();
 	}

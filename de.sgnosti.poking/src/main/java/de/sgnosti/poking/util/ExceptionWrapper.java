@@ -6,21 +6,24 @@ public class ExceptionWrapper {
 
 	/**
 	 * Catch exceptions to throw runtime errors instead
-	 * @param callable what to run
+	 * 
+	 * @param callable
+	 *            what to run
 	 * @return the return value of the callable
 	 */
-	public static <T> T wrap (Callable<T> callable) {
+	public static <T> T wrap(Callable<T> callable) {
 		try {
 			return callable.call();
-		}
-		catch (Exception e) {
-			throw new RuntimeException (e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
-	
+
 	/**
 	 * Catch exceptions to throw runtime errors instead
-	 * @param block what to run (no result expected)
+	 * 
+	 * @param block
+	 *            what to run (no result expected)
 	 */
 	public static void wrap(Block block) {
 		try {

@@ -51,7 +51,8 @@ public class PokingApplication {
 
 			// configure humidity sensor
 			humidityBricklet.setHumidityCallbackThreshold('>', (short) 60, (short) 60);
-			humidityBricklet.addHumidityReachedListener((final int humidity) -> System.out.println("Humidity reached " + humidity / 10.0 + "%"));
+			humidityBricklet.addHumidityReachedListener((final int humidity) -> System.out.println("Humidity reached " + humidity / 10.0
+					+ "%"));
 
 			humidityBricklet.setHumidityCallbackPeriod(10000);
 			humidityBricklet.addHumidityListener((final int humidity) -> System.out.println("Current humidity " + humidity / 10.0 + "%"));

@@ -11,10 +11,9 @@ import de.sgnosti.poking.util.ExceptionWrapper;
 public class SoundIntensityBricklet implements Bricklet {
 
 	private final BrickletSoundIntensity bricklet;
-	
+
 	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
-	
 	public SoundIntensityBricklet(String uid, IPConnection ipcon) {
 		this.bricklet = new BrickletSoundIntensity(uid, ipcon);
 	}
@@ -46,7 +45,7 @@ public class SoundIntensityBricklet implements Bricklet {
 
 	@Override
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		propertyChangeSupport.addPropertyChangeListener(listener);		
+		propertyChangeSupport.addPropertyChangeListener(listener);
 	}
-	
+
 }
